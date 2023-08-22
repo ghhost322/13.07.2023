@@ -1,0 +1,77 @@
+1. 
+SELECT price * quantity * (1 - (discount / 100)) AS 'Выручка'
+FROM Product 
+WHERE name LIKE '%Молоко%' OR name LIKE '%Желе%'
+
+2.
+SELECT *
+FROM Product 
+WHERE date_of_delivery = CONVERT(date, GETDATE()) OR date_of_delivery = CONVERT(date, DATEADD(Day, -1, GETDATE()))  AND quantity > 10
+
+3.
+SELECT name, price
+FROM Product 
+WHERE 12 = DATEPART(MONTH, date_of_delivery)
+
+4.
+SELECT name, price
+FROM Product 
+WHERE category = 'Снеки' AND producer NOT LIKE '%Flint%'
+
+5.
+SELECT name, price
+FROM Product 
+WHERE name LIKE 'К%' AND category LIKE '%А%'
+
+6.
+SELECT *
+FROM Product 
+WHERE name LIKE '[в-л]%'
+
+7.
+SELECT *
+FROM Product 
+WHERE price < 50 AND date_of_delivery BETWEEN '2023-05-01' AND CONVERT(date, DATEADD(Day, -1, GETDATE()))
+
+8.
+SELECT *
+FROM Product 
+WHERE category = 'Посуд' AND quantity > 50
+
+9.
+SELECT *
+FROM Product 
+WHERE price BETWEEN 100 AND 200 
+ORDER BY price 
+
+10.
+UPDATE Product SET price = (price * 0.95)
+
+11.
+UPDATE Product SET date_of_delivery = CONVERT(date, GETDATE())
+WHERE date_of_delivery IS NULL
+
+12.
+DELETE Product 
+BETWEEN quantity < 100 AND price > 70
+
+13.
+DELETE Product 
+WHERE category = 'Снеки' OR category = 'Алкоголь'
+
+14.
+DELETE Product 
+WHERE name LIKE '_____'
+
+15.
+DELETE Product 
+WHERE date_of_delivery > CONVERT(date, DATEADD(MONTH, -3, GETDATE()))
+
+16.
+SELECT TOP 5 *
+FROM Product
+ORDER BY price DESC
+
+17.
+DELETE Product
+WHERE producer IS NULL OR discount > 10
